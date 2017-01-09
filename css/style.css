@@ -116,16 +116,18 @@ pre{
     display: block;
     width: 100%;
     box-sizing: border-box;
-    padding: 1.425em 18.5% 1.425em 11.5%;
+    padding: 1.425em 11.5%;
+    padding-right: 0;
 }
 .content-logo img{
     display: inline-block;
     max-width: 70%;
+    vertical-align: middle;
 }
 .content-logo span{
     display: inline-block;
     margin-left: 10px;
-    vertical-align: top;
+    vertical-align: middle;
     color: #323F4C;
     font-size: 1.1em;
     font-family: 'Roboto Condensed', sans-serif;
