@@ -69,14 +69,14 @@ i{
 }
 p, .content ul, .content ol{
     font-size: 14px;
-    color: #777A7A;
+    color: #D6F0F0;
     margin-bottom: 16px;
     line-height: 1.6;
     font-weight: 300;
 }
 .content h1:first-child{
     font-size: 1.333em;
-    color: #034c8f;
+    color: #59C3C3;
     padding-top: 2.5em;
     text-transform: uppercase;
     border-top: 1px solid rgba(255,255,255,0.3);
@@ -173,7 +173,7 @@ pre{
     box-sizing: border-box;
     margin-left: 300px;
     z-index: 2;
-    background-color: #fff;
+    background-color: #323f4c;
     min-height: 100%;
     padding-bottom: 1px;
 }
@@ -200,11 +200,11 @@ pre{
 .content table, 
 .content aside, 
 .content dl {
-    margin-right: 50%;
+    /* margin-right: 50%; */
     padding: 0 28px;
     box-sizing: border-box;
     display: block;
-    max-width: 680px;
+    /* max-width: 680px; */
 }
 .content ul, 
 .content ol {
@@ -218,7 +218,7 @@ pre{
     font-size: 15px;
     margin-top: 2.5em;
     margin-bottom: 0.8em;
-    color: #034c8f;
+    color: #59C3C3;
     text-transform: uppercase;
     font-family: 'Roboto Condensed', sans-serif;
 }
@@ -234,7 +234,7 @@ pre{
 }
 .content-page .content p, 
 .content-page .content pre {
-    max-width: 680px;
+    /* max-width: 680px; */
 }
 .content pre, 
 .content blockquote {
@@ -285,7 +285,11 @@ pre{
     line-height: 1.6;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
-    color: #777A7A;
+    color: #D6F0F0;
+}
+
+.content thead {
+    color: #417179;
 }
 /* RESPONSIVE
 ----------------------------------------------------------------------------------------*/
