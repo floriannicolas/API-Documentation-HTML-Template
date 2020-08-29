@@ -67,7 +67,7 @@ i{
 .scroll-to-link{
     cursor: pointer;
 }
-p{
+p, .content ul, .content ol{
     font-size: 14px;
     color: #777A7A;
     margin-bottom: 16px;
@@ -198,8 +198,6 @@ pre{
 .content h6, 
 .content p, 
 .content table, 
-.content ul, 
-.content ol, 
 .content aside, 
 .content dl {
     margin-right: 50%;
@@ -207,6 +205,10 @@ pre{
     box-sizing: border-box;
     display: block;
     max-width: 680px;
+}
+.content ul, 
+.content ol {
+    padding: 0 44px;
 }
 .content h2,
 .content h3, 
