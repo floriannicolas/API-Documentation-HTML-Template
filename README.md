@@ -3,7 +3,7 @@
 ### A simple, modern and readable HTML template for APIs documentations
 
 You can take a look with this [DEMO](https://ticlekiwi.github.io/API-Documentation-HTML-Template/). \
-Or this other [One Content Column DEMO](https://ticlekiwi.github.io/API-Documentation-HTML-Template/one-content-column.html). 
+Or this other [One Content Column DEMO](https://ticlekiwi.github.io/API-Documentation-HTML-Template/one-content-column). 
 
 ## Current version : 1.0.1
 
@@ -29,7 +29,7 @@ To use One Content Column Version, don't forget to add ```one-content-column-ver
 
 ## Contributors
 
-Special thanks to [TheStami](https://github.com/TheStami) for his contribution creating [One Content Column version](https://ticlekiwi.github.io/API-Documentation-HTML-Template/one-content-column.html) ! 
+Special thanks to [TheStami](https://github.com/TheStami) for his contribution creating [One Content Column version](https://ticlekiwi.github.io/API-Documentation-HTML-Template/one-content-column) ! 
 
 
 ## Contribute
