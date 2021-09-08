@@ -5,14 +5,12 @@
 You can take a look with this [DEMO](https://ticlekiwi.github.io/API-Documentation-HTML-Template/). \
 Or this other [One Content Column DEMO](https://ticlekiwi.github.io/API-Documentation-HTML-Template/one-content-column). 
 
-## Current version : 1.0.2
+## Current version : 1.0.3
 
 
 ### What's new in the latest version : 
 
-- One Content Column version added.
-- Fix list ```<ul>``` and ```<ol>```.
-- Local jquery.js file removed to use cdnjs. 
+- Fix list on 3 content columns `<ul>` and `<ol>`.
 
 ## Credits
 
