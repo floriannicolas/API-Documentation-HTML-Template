@@ -5,16 +5,23 @@
 You can take a look with this [DEMO](https://ticlekiwi.github.io/API-Documentation-HTML-Template/). \
 Or this other [One Content Column DEMO](https://ticlekiwi.github.io/API-Documentation-HTML-Template/one-content-column). 
 
-## Current version : 1.0.3
+## Current version : 1.0.4
 
 
 ### What's new in the latest version : 
 
 - Fix list on 3 content columns `<ul>` and `<ol>`.
+- Removed `jQuery` usage to vanilla js.
+- Update of css fonts.
+- Fix menu with long text.
+- Updated Google Font call.
+- Removed usage of `Roboto Condensed` font.
+- Updated `menu` `data-target` to use `content`.
+- Added `.central-overflow-x` util class to avoid overflows.
+
 
 ## Credits
 
-* jQuery 1.8.2
 * Google Font (Roboto|Source+Code+Pro)
 * Highlight.js 9.8.0
 * A Creative Common logo: platform by Emily van den Heever from the Noun Project.
@@ -24,6 +31,15 @@ Or this other [One Content Column DEMO](https://ticlekiwi.github.io/API-Document
 This is a simple HTML template, do whatever you want with this !
 
 To use One Content Column Version, don't forget to add ```one-content-column-version``` css class to ```<body>``` like in ```one-content-column.html``` file. 
+
+## Utils CSS class 
+
+If you have an element in central column that overflow on third column, you can add it `central-overflow-x` css class to prevent it.
+
+Example: 
+```html
+<table class="central-overflow-x">...<table>
+```
 
 
 ## Contributors

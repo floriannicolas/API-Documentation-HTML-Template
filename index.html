@@ -17,9 +17,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="css/hightlightjs-dark.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,500|Source+Code+Pro:300" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300&family=Source+Code+Pro:wght@300&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="css/style.css" media="all">
     <script>hljs.initHighlightingOnLoad();</script>
 </head>
@@ -32,13 +33,13 @@
     </div>
     <div class="content-menu">
         <ul>
-            <li class="scroll-to-link active" data-target="get-started">
+            <li class="scroll-to-link active" data-target="content-get-started">
                 <a>GET STARTED</a>
             </li>
-            <li class="scroll-to-link" data-target="get-characters">
+            <li class="scroll-to-link" data-target="content-get-characters">
                 <a>Get Characters</a>
             </li>
-            <li class="scroll-to-link" data-target="errors">
+            <li class="scroll-to-link" data-target="content-errors">
                 <a>Errors</a>
             </li>
         </ul>
@@ -48,7 +49,7 @@
     <div class="content-code"></div>
     <div class="content">
         <div class="overflow-hidden content-section" id="content-get-started">
-            <h1 id="get-started">Get started</h1>
+            <h1>Get started</h1>
             <pre>
     API Endpoint
 
@@ -62,7 +63,7 @@
             </p>
         </div>
         <div class="overflow-hidden content-section" id="content-get-characters">
-            <h2 id="get-characters">get characters</h2>
+            <h2>get characters</h2>
             <pre><code class="bash">
 # Here is a curl example
 curl \
@@ -144,7 +145,7 @@ Result example :
 }
                 </code></pre>
             <h4>QUERY PARAMETERS</h4>
-            <table>
+            <table class="central-overflow-x">
                 <thead>
                 <tr>
                     <th>Field</th>
@@ -200,7 +201,7 @@ Result example :
             </table>
         </div>
         <div class="overflow-hidden content-section" id="content-errors">
-            <h2 id="errors">Errors</h2>
+            <h2>Errors</h2>
             <p>
                 The Westeros API uses the following error codes:
             </p>

@@ -84,8 +84,8 @@ p, .content ul, .content ol{
     margin-top: 0;
     margin-bottom: 1.3em;
     clear: both;
-    font-family: 'Roboto Condensed', sans-serif;
 }
+
 code,
 pre{
     font-family: 'Source Code Pro', monospace;
@@ -130,12 +130,10 @@ pre{
     vertical-align: middle;
     color: #323F4C;
     font-size: 1.1em;
-    font-family: 'Roboto Condensed', sans-serif;
 }
 .content-menu{
     margin: 2em auto 2em;
     padding: 0 0 100px;
-    font-family: 'Roboto Condensed', sans-serif;
 }
 .content-menu ul{
     list-style: none;
@@ -147,7 +145,7 @@ pre{
     list-style: none;
     margin: 0;
     padding: 0;
-    line-height: 42px;
+    line-height: 0;
 }
 .content-menu ul li:hover,
 .content-menu ul li.active{
@@ -158,10 +156,11 @@ pre{
     color: #00a8e3;
 }
 .content-menu ul li a{
-    padding: 0.5em 13.25% 0em;
+    padding: 12px 13.25%;
     color: #777A7A;
     letter-spacing: 0.025em;
-    line-height: 1.2;
+    line-height: 1.1;
+    display: block;
     text-transform: capitalize;
 }
 
@@ -201,12 +200,25 @@ pre{
 .content aside,
 .content dl,
 .content ul,
-.content ol {
+.content ol,
+.content .central-overflow-x {
     margin-right: 50%;
     padding: 0 28px;
     box-sizing: border-box;
     display: block;
     max-width: 680px;
+}
+.content .central-overflow-x {
+    margin-right: calc(50% + 28px);
+    margin-left: 28px;
+    padding: 0;
+    overflow-y: hidden;
+    max-width: 100%;
+    display: block;
+}
+.content p .central-overflow-x {
+    margin-right: 0;
+    margin-left: 0;
 }
 .content ul,
 .content ol {
@@ -222,7 +234,6 @@ pre{
     margin-bottom: 0.8em;
     color: #034c8f;
     text-transform: uppercase;
-    font-family: 'Roboto Condensed', sans-serif;
 }
 .content h2{
     font-size: 1.333em;
@@ -341,6 +352,10 @@ body.one-content-column-version .content thead {
 @media only screen and (max-width:980px){
     .content h1, .content h2, .content h3, .content h4, .content h5, .content h6, .content p, .content table, .content ul, .content ol, .content aside, .content dl, .content ul, .content ol {
         margin-right: 0;
+    }
+    .content .central-overflow-x {
+        margin: 0;
+        padding: 0 28px;
     }
     .content-code{
         display: none;
