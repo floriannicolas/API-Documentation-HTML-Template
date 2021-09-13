@@ -220,6 +220,11 @@ pre{
     margin-right: 0;
     margin-left: 0;
 }
+.break-word {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
 .content ul,
 .content ol {
     padding: 0 44px;

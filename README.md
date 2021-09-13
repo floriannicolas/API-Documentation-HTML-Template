@@ -18,6 +18,7 @@ Or this other [One Content Column DEMO](https://ticlekiwi.github.io/API-Document
 - Removed usage of `Roboto Condensed` font.
 - Updated `menu` `data-target` to use `content`.
 - Added `.central-overflow-x` util class to avoid overflows.
+- Added `.break-word` util class to avoir overflows without adding a scrollbar.
 
 
 ## Credits
@@ -39,6 +40,13 @@ If you have an element in central column that overflow on third column, you can 
 Example: 
 ```html
 <table class="central-overflow-x">...<table>
+```
+
+If you doesn't want a scrollbar, you can use `break-word` css class to prevent it.
+
+Example: 
+```html
+<code class="higlighted break-word">http://api.westeros.com/with-a-very-very-very-very-very-long-end-point-url/get<table>
 ```
 
 
