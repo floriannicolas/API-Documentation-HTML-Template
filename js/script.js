@@ -52,9 +52,9 @@ function onScroll () {
 }
 
 calculElements();
-setTimeout(() => {
-    calculElements();
-}, 500)
+window.onload = () => {
+    calculElements()
+};
 window.addEventListener('resize', function (e) {
     e.preventDefault();
     calculElements();
