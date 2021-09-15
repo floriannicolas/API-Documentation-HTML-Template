@@ -10,6 +10,23 @@ var elements = [];
     };
 });
 
+document.getElementById('button-menu-mobile').onclick = function (e) {
+    e.preventDefault();
+    document.querySelector('html').classList.toggle('menu-opened');
+}
+document.querySelector('.left-menu .mobile-menu-closer').onclick = function (e) {
+    e.preventDefault();
+    document.querySelector('html').classList.remove('menu-opened');
+}
+
+function debounce(func){
+    var timer;
+    return function(event){
+      if(timer) clearTimeout(timer);
+      timer = setTimeout(func,100,event);
+    };
+}
+
 function calculElements () {
     var totalHeight = 0;
     elements = [];
@@ -20,11 +37,12 @@ function calculElements () {
         section.maxHeight = totalHeight - 25;
         elements.push(section);
     });
+    onScroll();
 }
 
 function onScroll () {
     var scroll = window.pageYOffset;
-    // console.log('scroll', scroll, elements)
+    console.log('scroll', scroll, elements)
     for (var i = 0; i < elements.length; i++) {
         var section = elements[i];
         if (scroll <= section.maxHeight) {
@@ -39,7 +57,8 @@ function onScroll () {
             break;
         }
     }
-    if (window.innerHeight + scroll >= document.body.scrollHeight) { // end of scroll, last element
+    //console.log('test', window.innerHeight + scroll, document.body.scrollHeight);
+    if (window.innerHeight + scroll + 5 >= document.body.scrollHeight) { // end of scroll, last element
         var elems = document.querySelectorAll(".content-menu ul li");
         [].forEach.call(elems, function (el) {
             el.classList.remove("active");
@@ -53,12 +72,12 @@ function onScroll () {
 
 calculElements();
 window.onload = () => {
-    calculElements()
+    calculElements();
 };
-window.addEventListener('resize', function (e) {
+window.addEventListener("resize",debounce(function(e){
     e.preventDefault();
     calculElements();
-});
+}));
 window.addEventListener('scroll', function (e) {
     e.preventDefault();
     onScroll();

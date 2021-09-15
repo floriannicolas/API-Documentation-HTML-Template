@@ -5,7 +5,7 @@
 You can take a look with this [DEMO](https://ticlekiwi.github.io/API-Documentation-HTML-Template/). \
 Or this other [One Content Column DEMO](https://ticlekiwi.github.io/API-Documentation-HTML-Template/one-content-column). 
 
-## Current version : 1.0.4
+## Current version : 1.0.5
 
 
 ### What's new in the latest version : 
@@ -19,6 +19,8 @@ Or this other [One Content Column DEMO](https://ticlekiwi.github.io/API-Document
 - Updated `menu` `data-target` to use `content`.
 - Added `.central-overflow-x` util class to avoid overflows.
 - Added `.break-word` util class to avoir overflows without adding a scrollbar.
+- Added optional `Version` & `Last updated` infos
+- Added responsive menu with `burger icon` menu button. 
 
 
 ## Credits
