@@ -170,6 +170,14 @@ pre{
 .content-menu ul li.active a{
     color: #00a8e3;
 }
+@media (hover: none) {
+    .content-menu ul li:not(.active):hover {
+        background-color: inherit;
+    }
+    .content-menu ul li:not(.active):hover a {
+        color: #777A7A;
+    }
+}
 .content-menu ul li a{
     padding: 12px 13.25%;
     color: #777A7A;

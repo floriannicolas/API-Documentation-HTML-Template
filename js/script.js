@@ -5,7 +5,12 @@ var elements = [];
     div.onclick = function (e) {
         e.preventDefault();
         var target = this.dataset.target;
-        document.getElementById(target).scrollIntoView({behavior: 'smooth'});
+        document.getElementById(target).scrollIntoView({ behavior: 'smooth' });
+        var elems = document.querySelectorAll(".content-menu ul li");
+        [].forEach.call(elems, function (el) {
+            el.classList.remove("active");
+        });
+        this.classList.add("active");
         return false;
     };
 });
@@ -19,11 +24,11 @@ document.querySelector('.left-menu .mobile-menu-closer').onclick = function (e) 
     document.querySelector('html').classList.remove('menu-opened');
 }
 
-function debounce(func){
+function debounce (func) {
     var timer;
-    return function(event){
-      if(timer) clearTimeout(timer);
-      timer = setTimeout(func,100,event);
+    return function (event) {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(func, 100, event);
     };
 }
 
@@ -57,7 +62,6 @@ function onScroll () {
             break;
         }
     }
-    //console.log('test', window.innerHeight + scroll, document.body.scrollHeight);
     if (window.innerHeight + scroll + 5 >= document.body.scrollHeight) { // end of scroll, last element
         var elems = document.querySelectorAll(".content-menu ul li");
         [].forEach.call(elems, function (el) {
@@ -74,7 +78,7 @@ calculElements();
 window.onload = () => {
     calculElements();
 };
-window.addEventListener("resize",debounce(function(e){
+window.addEventListener("resize", debounce(function (e) {
     e.preventDefault();
     calculElements();
 }));
