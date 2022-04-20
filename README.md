@@ -2,8 +2,8 @@
 
 ### A simple, modern and readable HTML template for APIs documentations
 
-You can take a look with this [DEMO](https://ticlekiwi.github.io/API-Documentation-HTML-Template/). \
-Or this other [One Content Column DEMO](https://ticlekiwi.github.io/API-Documentation-HTML-Template/one-content-column). 
+You can take a look with this [DEMO](https://floriannicolas.github.io/API-Documentation-HTML-Template/). \
+Or this other [One Content Column DEMO](https://floriannicolas.github.io/API-Documentation-HTML-Template/one-content-column). 
 
 ## Current version : 1.0.5
 
