@@ -66,10 +66,41 @@
         https://api.westeros.com/
                 </pre>
             <p>
-                The Westeros API provides programmatic access to read Game of Thrones data. Retrieve a character, provide an oauth connexion, retrieve a familly, filter them, etc.
+                <strong>Tapsi-Pack</strong> offers a set of embedded APIs for external teams to integrate <strong>Tapsi-Pack</strong>
+                functionalities into their own applications.
+                These external teams are called <strong>clients</strong> in this document, and each client is
+                assigned a unique <strong>client_id</strong> and a corresponding <strong>client_secret</strong>.
+            </p>
+
+            <p>
+
+                To access external APIs, a token must be provided in the header of clients' request. This token ensures
+                secure access to the APIs and prevents unauthorized access to sensitive data. With these APIs, clients
+                can easily incorporate <strong>Tapsi-Pack</strong>'s features into their own products, enhancing their
+                functionality and
+                user experience.
+            </p>
+
+            <p>
+
+                The token should be set in the header with the key name <strong>"authorization"</strong>.
             </p>
             <p>
-                To use this API, you need an <strong>API key</strong>. Please contact us at <a href="mailto:jon.snow@nightswatch.wes">jon.snow@nightswatch.wes</a> to get your own API key.
+
+                There are two types of tokens:
+            </p>
+            <p>
+                1. Client Secret Token
+            </p>
+
+            <p>
+                2. User Access Token
+            </p>
+
+            <p>
+                To get your token, please contact us at
+                <a href="https://pack.tapsi.ir/landing">Tapsi Pack</a>
+                to get your own tokens.
             </p>
         </div>
         <div class="overflow-hidden content-section" id="content-get-characters">
