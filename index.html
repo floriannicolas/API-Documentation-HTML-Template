@@ -47,7 +47,7 @@
                 <a>GET STARTED</a>
             </li>
             <li class="scroll-to-link" data-target="content-get-characters">
-                <a>Get Characters</a>
+                <a>Token Management for Clients</a>
             </li>
             <li class="scroll-to-link" data-target="content-errors">
                 <a>Errors</a>
@@ -103,89 +103,188 @@
                 to get your own tokens.
             </p>
         </div>
+
         <div class="overflow-hidden content-section" id="content-get-characters">
-            <h2>get characters</h2>
-            <pre><code class="bash">
+            <h1>Token Management for Clients</h1>
+
+            <div>
+                <h3>
+                    1. Generate Access Token and Refresh Token using Client ID and PAT
+                </h3>
+                <pre>
+                <code class="bash">
 # Here is a curl example
-curl \
--X POST http://api.westeros.com/character/get \
--F 'secret_key=your_api_key' \
--F 'house=Stark,Bolton' \
--F 'offset=0' \
--F 'limit=50'
-                </code></pre>
-            <p>
-                To get characters you need to make a POST call to the following url :<br>
-                <code class="higlighted break-word">http://api.westeros.com/character/get</code>
-            </p>
-            <br>
-            <pre><code class="json">
-Result example :
+curl --location 'https://api.tapsi.cab/api/v1/delivery/external/oauth2/token' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Authorization: Bearer Client Secret' \
+--data-urlencode 'grant_type=authorization_code' \
+--data-urlencode 'code=User PAT'
+
+                </code>
+            </pre>
+                <p>
+                    Each client is assigned a Client ID, known as the <strong>"Client ID"</strong>.
+                    Clients have the ability to generate both an
+                    <strong>Access Token</strong> and a <strong>Refresh Token</strong>
+                    using their <strong>Client ID</strong> in combination with the <strong>user's PAT</strong>.
+                    The Access Token that is generated inherits the permissions associated with the corresponding PAT.
+                    The body of the message should be sent as <strong>x-www-form-urlencoded</strong>
+                    and the provided <strong>client secret</strong> should be set as the <strong>Bearer</strong>
+                    authorization header.
+                </p>
+                <p>
+                    The client can utilize the Pack APIs by using the <strong>access token</strong>.
+                    The available APIs are described in the Client APIs part of this document.
+                    The <strong>access token</strong> should be placed in the request header using the <strong>`authorization`</strong>
+                    key.
+                </p>
+                <p>
+                    URL :<br>
+                    <code class="higlighted break-word">/api/v1/delivery/external/oauth2/token</code>
+                </p>
+                <p>
+                    METHOD :<br>
+                    <code class="higlighted break-word">POST</code>
+                </p>
+                <br>
+                <pre><code class="json">
+# Response:
 
 {
-  query:{
-    offset: 0,
-    limit: 50,
-    house: [
-      "Stark",
-      "Bolton"
-    ],
-  }
-  result: [
-    {
-      id: 1,
-      first_name: "Jon",
-      last_name: "Snow",
-      alive: true,
-      house: "Stark",
-      gender: "m",
-      age: 14,
-      location: "Winterfell"
-    },
-    {
-      id: 2,
-      first_name: "Eddard",
-      last_name: "Stark",
-      alive: false,
-      house: "Stark",
-      gender: "m",
-      age: 35,
-      location: 'Winterfell'
-    },
-    {
-      id: 3,
-      first_name: "Catelyn",
-      last_name: "Stark",
-      alive: false,
-      house: "Stark",
-      gender: "f",
-      age: 33,
-      location: "Winterfell"
-    },
-    {
-      id: 4,
-      first_name: "Roose",
-      last_name: "Bolton",
-      alive: false,
-      house: "Bolton",
-      gender: "m",
-      age: 40,
-      location: "Dreadfort"
-    },
-    {
-      id: 5,
-      first_name: "Ramsay",
-      last_name: "Snow",
-      alive: false,
-      house: "Bolton",
-      gender: "m",
-      age: 15,
-      location: "Dreadfort"
-    },
-  ]
+    "access_token": String,
+    "refresh_token": String,
+    "scope": String,
+    "token_type": "Bearer",
+    "expires_in": Int // seconds to expiration
 }
-                </code></pre>
-            <h4>QUERY PARAMETERS</h4>
+                </code>
+            </pre>
+                <h4>Form URL Encoded</h4>
+                <table class="central-overflow-x">
+                    <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>grant_type</td>
+                        <td>String</td>
+                        <td>authorization_code</td>
+                    </tr>
+                    <tr>
+                        <td>code</td>
+                        <td>String</td>
+                        <td>User PAT</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <h3>
+                    2. Access Token Expiry
+                </h3>
+                <pre>
+                <code class="bash">
+HTTP/1.1 401 Unauthorized
+Content-Type: text
+
+Jwt is expired
+
+                </code>
+            </pre>
+                <p>
+                    Clients are allowed to utilize the access token until it reaches its expiration point.
+                    Should a client attempt to use an access token that has already expired,
+                    the following response will be
+                    generated
+                </p>
+                <br>
+                <pre><code class="json">
+                </code>
+            </pre>
+            </div>
+
+            <div>
+                <h3>
+                    3. Generate a new Access Token and Refresh token using the Refresh token
+                </h3>
+                <pre>
+                <code class="bash">
+# Here is a curl example
+curl --location 'https://api.tapsi.cab/api/v1/delivery/external/oauth2/token' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Authorization: Bearer Client Secret' \
+--data-urlencode 'grant_type=refresh_token' \
+--data-urlencode 'refresh_token=User Refresh Token'
+
+                </code>
+            </pre>
+                <p>
+                    Once a client has obtained an initial Access Token and Refresh Token, they can use the Refresh Token
+                    to generate a new Access Token and Refresh Token without needing to involve the user's PAT or Client
+                    ID again. This is useful for maintaining continuous access to the API without frequent user
+                    interactions.
+                    To generate a new set of tokens using a Refresh Token, clients should make a POST request to the
+                    token endpoint, and the body of the message should be sent as
+                    <strong>x-www-form-urlencoded</strong> and the client
+                    secret as the <strong>Bearer</strong> authorization header.
+                </p>
+
+                <p>
+                    At present, the access token is configured to remain valid for a duration of 2 days. When it
+                    expires, users need to log in using their Personal Access Token (PAT) again, following the same
+                    process as in Step 1.
+                </p>
+                <br>
+                <pre><code class="json">
+# Success Response:
+
+{
+    "access_token": String,
+    "refresh_token": String,k
+    "scope": String,
+    "token_type": "Bearer",
+    "expires_in": Int // seconds to expiration
+}
+
+
+# Error Response:
+
+HTTP/1.1 401 Unauthorized
+Content-Type: text
+
+Jwt is expired
+                </code>
+            </pre>
+                <h4>Form URL Encoded</h4>
+                <table class="central-overflow-x">
+                    <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>grant_type</td>
+                        <td>String</td>
+                        <td>refresh_token</td>
+                    </tr>
+                    <tr>
+                        <td>refresh_token</td>
+                        <td>String</td>
+                        <td>User Refresh Token</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
             <table class="central-overflow-x">
                 <thead>
                 <tr>
