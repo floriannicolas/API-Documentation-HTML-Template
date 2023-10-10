@@ -285,6 +285,45 @@ Jwt is expired
             </div>
 
         </div>
+
+        <div class="overflow-hidden content-section" id="content-errors">
+            <h1>Error Models</h1>
+            <pre>
+                <code class="json">
+{
+code: Int, //A simple error code that can be easily handled by the client.
+message: String,
+details: Error[]
+}
+                </code>
+            </pre>
+            <p>
+                This document provides an overview of the Tapsi-Pack error model for Istio APIs,
+                which uses
+                <a href="https://cloud.google.com/apis/design/errors">Google Error Model APIs</a>
+                as the underlying infrastructure.
+                Every error that occurs within handling a request in Tapsi-Pack that is called has the following format:
+            </p>
+
+            <h3>
+                Error Message
+            </h3>
+
+            <p>
+                The error message should assist users in comprehending and resolving the API error quickly and easily.
+                The message field is intended for developers and is written in English.
+            </p>
+
+            <h3>
+                Error Details
+            </h3>
+
+            <p>
+                There are some standard error payloads for error details. These cover the most common needs for API
+                errors. Like error codes, developers should use these standard payloads whenever possible. For now, in
+                Tapsi-Pack we have one known payload:
+            </p>
+
             <table class="central-overflow-x">
                 <thead>
                 <tr>
@@ -295,50 +334,53 @@ Jwt is expired
                 </thead>
                 <tbody>
                 <tr>
-                    <td>secret_key</td>
-                    <td>String</td>
-                    <td>Your API key.</td>
-                </tr>
-                <tr>
-                    <td>search</td>
-                    <td>String</td>
-                    <td>(optional) A search word to find character by name.</td>
-                </tr>
-                <tr>
-                    <td>house</td>
+                    <td>ErrorLocalization</td>
                     <td>String</td>
                     <td>
-                        (optional) a string array of houses:
+                        If a user-facing error message is needed. we use this error payload, in which the message in
+                        this payload is localized.
                     </td>
-                </tr>
-                <tr>
-                    <td>alive</td>
-                    <td>Boolean</td>
-                    <td>
-                        (optional) a boolean to filter alived characters
-                    </td>
-                </tr>
-                <tr>
-                    <td>gender</td>
-                    <td>String</td>
-                    <td>
-                        (optional) a string to filter character by gender:<br>
-                        m: male<br>
-                        f: female
-                    </td>
-                </tr>
-                <tr>
-                    <td>offset</td>
-                    <td>Integer</td>
-                    <td>(optional - default: 0) A cursor for use in pagination. Pagination starts offset the specified offset.</td>
-                </tr>
-                <tr>
-                    <td>limit</td>
-                    <td>Integer</td>
-                    <td>(optional - default: 10) A limit on the number of objects to be returned, between 1 and 100.</td>
                 </tr>
                 </tbody>
             </table>
+
+            <h4>
+                Error Localization
+            </h4>
+            <pre>
+                <code class="json">
+# Error Localized Message:
+
+{
+  "@type": "type.googleapis.com/google.rpc.LocalizedMessage",
+  "locale": "fa-IR",
+  "message": "مختصات داده شده اشتباه است یا تپسی پک در این مختصات سرویس ارائه نمی‌دهد."
+}
+                </code>
+            </pre>
+            <p>
+                If a user-facing error message is needed, use LocalizedMessage which will be appeared in the details
+                field.
+            </p>
+
+
+            <h4>
+                Constraints of Error Details
+            </h4>
+            <p>
+                The Tapsi-Pack backend team guarantees that the error details will always be one of the standard error
+                payloads. However, the backend team does not guarantee that the error details will always be present.
+                For example, if the error is caused by a network failure, the error details may not be available. In
+                this case, the client should not rely on the error details to be present. Instead, the client should
+                rely on the error code and message to be present. The client should also be prepared to handle the case
+                where the error details are not present.
+            </p>
+            <p>
+                Also, The Tapsi-Pack backend team guarantees that the list of error details always contains one or zero
+                of each unique type and there are rules for handling them:
+                If there are any ErrorLocalization, the message in this object should be shown to the end user.
+
+            </p>
         </div>
         <div class="overflow-hidden content-section" id="content-errors">
             <h2>Errors</h2>
