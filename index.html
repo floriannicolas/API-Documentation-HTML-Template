@@ -52,6 +52,9 @@
             <li class="scroll-to-link" data-target="content-errors">
                 <a>Errors</a>
             </li>
+            <li class="scroll-to-link" data-target="content-client-apis">
+                <a>Client APIs</a>
+            </li>
         </ul>
     </div>
 </div>
@@ -382,45 +385,265 @@ details: Error[]
 
             </p>
         </div>
-        <div class="overflow-hidden content-section" id="content-errors">
-            <h2>Errors</h2>
+
+
+        <div class="overflow-hidden content-section" id="content-client-apis">
+            <h1>Client APIs</h1>
             <p>
-                The Westeros API uses the following error codes:
+                These APIs can be used by clients. The access token should be set in the header of all APIs with the key
+                name "authorization".
             </p>
-            <table>
-                <thead>
-                <tr>
-                    <th>Error Code</th>
-                    <th>Meaning</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>X000</td>
-                    <td>
-                        Some parameters are missing. This error appears when you don't pass every mandatory parameters.
-                    </td>
-                </tr>
-                <tr>
-                    <td>X001</td>
-                    <td>
-                        Unknown or unvalid <code class="higlighted">secret_key</code>. This error appears if you use an unknow API key or if your API key expired.
-                    </td>
-                </tr>
-                <tr>
-                    <td>X002</td>
-                    <td>
-                        Unvalid <code class="higlighted">secret_key</code> for this domain. This error appears if you use an  API key non specified for your domain. Developper or Universal API keys doesn't have domain checker.
-                    </td>
-                </tr>
-                <tr>
-                    <td>X003</td>
-                    <td>
-                        Unknown or unvalid user <code class="higlighted">token</code>. This error appears if you use an unknow user <code class="higlighted">token</code> or if the user <code class="higlighted">token</code> expired.
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+
+            <div>
+                <h3>
+                    Available Dates API
+                </h3>
+                <pre>
+                    <code class="json">
+# Response:
+
+{
+ "availableDatesTimestamp": [
+  "1690576200000",
+  "1690662600000",
+  "1690749000000"
+ ]
+}
+                </code>
+            </pre>
+                <p>
+                    This API returns a list of timestamps that correspond to the first days in which Tapsi Pack can
+                    offer services in the Tehran timezone. These timestamps are used in the preview API to calculate
+                    time-slots for a specific day.
+                    This API can be called with both client secret and user access token.
+                </p>
+                <p>
+                    URL :<br>
+                    <code class="higlighted break-word">/api/v1/delivery/external/embedded/available-dates</code>
+                </p>
+                <p>
+                    METHOD :<br>
+                    <code class="higlighted break-word">GET</code>
+                </p>
+            </div>
+
+
+            <div>
+                <h3>
+                    Order Preview API
+                </h3>
+                <pre>
+                <code class="json">
+
+# Response:
+
+{
+  "token": "string",
+  "invoicePerTimeslots": [
+    {
+      "timeslotId": "string",
+      "startTimestamp": "Long", // start timestamp of the timeslot
+      "endTimestamp": "Long", // end timestamp of the timeslot
+      "isAvailable": "bool", // indicate if the timeslot is available or not
+      "invoice": "Invoice?" // It's null when the timeslot is not available
+    }
+  ]
+}
+
+Invoice: {
+  "discount": "int", // the amount of discount
+  "amount": "int", // the total amount of the order
+  "paymentInAdvance": "int", // the payment in advance amount (amount - discount - senderCredit)
+  "descriptions": [ // the detail of the invoice provided as a list of title and description
+    {
+      "title": "string", // description title according to the user language
+      "amount": "int"
+    }
+  ]
+}
+                </code>
+            </pre>
+                <p>
+                    Clients are allowed to utilize the access token until it reaches its expiration point.
+                    Should a client attempt to use an access token that has already expired,
+                    the following response will be
+                    generated
+                </p>
+                <p>
+                    Also, if this API is called using the client secret instead of the user access token, you can
+                    display a preview of prices to your users without the need for a user token. The only difference is
+                    that the Token field in the response of this API will be an empty string.
+                </p>
+
+                <p>
+                    URL :<br>
+                    <code class="higlighted break-word">/api/v1/delivery/external/embedded/order/preview</code>
+                </p>
+                <p>
+                    METHOD :<br>
+                    <code class="higlighted break-word">GET</code>
+                </p>
+
+                <h4>Query Params</h4>
+                <table class="central-overflow-x">
+                    <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>originLat</td>
+                        <td>float</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>originLong</td>
+                        <td>float</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>destinationLat</td>
+                        <td>float</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>destinationLong</td>
+                        <td>float</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>dateTimestamp</td>
+                        <td>float</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>couponCode</td>
+                        <td>string?</td>
+                        <td>(optional)</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+
+            <div>
+                <h3>
+                    Order Submission API
+                </h3>
+                <pre>
+                <code class="json">
+
+# Location:
+
+{
+  "coordinate": {
+    "longitude": float,
+    "latitude": float
+  },
+  "description": "string",
+  "buildingNumber": "string",
+  "apartmentNumber": "string"
+}
+
+# Phone:
+
+{
+  "number": "string",
+  "type": "string" // HOME, MOBILE, OTHER
+}
+
+# Receiver:
+
+{
+  "fullName": "string",
+  "phones": [Phone],
+  "location": Location
+}
+
+# Sender:
+
+{
+  "location": Location
+}
+
+# Pack:
+
+{
+  "description": "string"
+}
+
+# Response:
+
+{
+  "orderId": "string" // the submitted order identifier
+}
+                </code>
+            </pre>
+                <p>
+                    Clients are allowed to utilize the access token until it reaches its expiration point.
+                    Should a client attempt to use an access token that has already expired,
+                    the following response will be
+                    generated
+                </p>
+                <p>
+                    Also, if this API is called using the client secret instead of the user access token, you can
+                    display a preview of prices to your users without the need for a user token. The only difference is
+                    that the Token field in the response of this API will be an empty string.
+                </p>
+
+                <p>
+                    URL :<br>
+                    <code class="higlighted break-word">/api/v1/delivery/external/embedded/order/submit</code>
+                </p>
+                <p>
+                    METHOD :<br>
+                    <code class="higlighted break-word">POST</code>
+                </p>
+
+                <h4>Request Body</h4>
+                <table class="central-overflow-x">
+                    <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>sender</td>
+                        <td>Sender</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>receiver</td>
+                        <td>Receiver</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>pack</td>
+                        <td>Pack</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>timeslotId</td>
+                        <td>string</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>token</td>
+                        <td>string</td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
         </div>
     </div>
     <div class="content-code"></div>
