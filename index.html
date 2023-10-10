@@ -20,7 +20,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300&family=Source+Code+Pro:wght@300&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300&family=Source+Code+Pro:wght@300&display=swap"
+          rel="stylesheet">
     <link rel="stylesheet" href="css/style.css" media="all">
     <script>hljs.initHighlightingOnLoad();</script>
 </head>
@@ -29,28 +30,38 @@
 <div class="left-menu">
     <div class="content-logo">
         <div class="logo">
-            <img alt="platform by Emily van den Heever from the Noun Project" title="platform by Emily van den Heever from the Noun Project" src="images/logo.png" height="32" />
+            <img alt="platform by Emily van den Heever from the Noun Project"
+                 title="platform by Emily van den Heever from the Noun Project" src="images/logo.png" height="32"/>
             <span>API Documentation</span>
         </div>
         <button class="burger-menu-icon" id="button-menu-mobile">
-            <svg width="34" height="34" viewBox="0 0 100 100"><path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"></path><path class="line line2" d="M 20,50 H 80"></path><path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"></path></svg>
+            <svg width="34" height="34" viewBox="0 0 100 100">
+                <path class="line line1"
+                      d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"></path>
+                <path class="line line2" d="M 20,50 H 80"></path>
+                <path class="line line3"
+                      d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"></path>
+            </svg>
         </button>
     </div>
     <div class="mobile-menu-closer"></div>
     <div class="content-menu">
         <div class="content-infos">
-            <div class="info"><b>Version:</b> 1.0.5</div>
-            <div class="info"><b>Last Updated:</b> 15th Sep, 2021</div>
+            <div class="info"><b>Version:</b> 1.0.0</div>
+            <div class="info"><b>Last Updated:</b> 10th Oct, 2023</div>
         </div>
         <ul>
             <li class="scroll-to-link active" data-target="content-get-started">
                 <a>GET STARTED</a>
             </li>
             <li class="scroll-to-link" data-target="content-get-characters">
-                <a>Get Characters</a>
+                <a>Token Management for Clients</a>
             </li>
             <li class="scroll-to-link" data-target="content-errors">
                 <a>Errors</a>
+            </li>
+            <li class="scroll-to-link" data-target="content-client-apis">
+                <a>Client APIs</a>
             </li>
         </ul>
     </div>
@@ -66,95 +77,264 @@
         https://api.westeros.com/
                 </pre>
             <p>
-                The Westeros API provides programmatic access to read Game of Thrones data. Retrieve a character, provide an oauth connexion, retrieve a familly, filter them, etc.
+                <strong>Tapsi-Pack</strong> offers a set of embedded APIs for external teams to integrate <strong>Tapsi-Pack</strong>
+                functionalities into their own applications.
+                These external teams are called <strong>clients</strong> in this document, and each client is
+                assigned a unique <strong>client_id</strong> and a corresponding <strong>client_secret</strong>.
+            </p>
+
+            <p>
+
+                To access external APIs, a token must be provided in the header of clients' request. This token ensures
+                secure access to the APIs and prevents unauthorized access to sensitive data. With these APIs, clients
+                can easily incorporate <strong>Tapsi-Pack</strong>'s features into their own products, enhancing their
+                functionality and
+                user experience.
+            </p>
+
+            <p>
+
+                The token should be set in the header with the key name <strong>"authorization"</strong>.
             </p>
             <p>
-                To use this API, you need an <strong>API key</strong>. Please contact us at <a href="mailto:jon.snow@nightswatch.wes">jon.snow@nightswatch.wes</a> to get your own API key.
+
+                There are two types of tokens:
+            </p>
+            <p>
+                1. Client Secret Token
+            </p>
+
+            <p>
+                2. User Access Token
+            </p>
+
+            <p>
+                To get your token, please contact us at
+                <a href="https://pack.tapsi.ir/landing">Tapsi Pack</a>
+                to get your own tokens.
             </p>
         </div>
+
         <div class="overflow-hidden content-section" id="content-get-characters">
-            <h2>get characters</h2>
-            <pre><code class="bash">
+            <h1>Token Management for Clients</h1>
+
+            <div>
+                <h3>
+                    1. Generate Access Token and Refresh Token using Client ID and PAT
+                </h3>
+                <pre>
+                <code class="bash">
 # Here is a curl example
-curl \
--X POST http://api.westeros.com/character/get \
--F 'secret_key=your_api_key' \
--F 'house=Stark,Bolton' \
--F 'offset=0' \
--F 'limit=50'
-                </code></pre>
-            <p>
-                To get characters you need to make a POST call to the following url :<br>
-                <code class="higlighted break-word">http://api.westeros.com/character/get</code>
-            </p>
-            <br>
-            <pre><code class="json">
-Result example :
+curl --location 'https://api.tapsi.cab/api/v1/delivery/external/oauth2/token' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Authorization: Bearer Client Secret' \
+--data-urlencode 'grant_type=authorization_code' \
+--data-urlencode 'code=User PAT'
+
+                </code>
+            </pre>
+                <p>
+                    Each client is assigned a Client ID, known as the <strong>"Client ID"</strong>.
+                    Clients have the ability to generate both an
+                    <strong>Access Token</strong> and a <strong>Refresh Token</strong>
+                    using their <strong>Client ID</strong> in combination with the <strong>user's PAT</strong>.
+                    The Access Token that is generated inherits the permissions associated with the corresponding PAT.
+                    The body of the message should be sent as <strong>x-www-form-urlencoded</strong>
+                    and the provided <strong>client secret</strong> should be set as the <strong>Bearer</strong>
+                    authorization header.
+                </p>
+                <p>
+                    The client can utilize the Pack APIs by using the <strong>access token</strong>.
+                    The available APIs are described in the Client APIs part of this document.
+                    The <strong>access token</strong> should be placed in the request header using the <strong>`authorization`</strong>
+                    key.
+                </p>
+                <p>
+                    URL :<br>
+                    <code class="higlighted break-word">/api/v1/delivery/external/oauth2/token</code>
+                </p>
+                <p>
+                    METHOD :<br>
+                    <code class="higlighted break-word">POST</code>
+                </p>
+                <br>
+                <pre><code class="json">
+# Response:
 
 {
-  query:{
-    offset: 0,
-    limit: 50,
-    house: [
-      "Stark",
-      "Bolton"
-    ],
-  }
-  result: [
-    {
-      id: 1,
-      first_name: "Jon",
-      last_name: "Snow",
-      alive: true,
-      house: "Stark",
-      gender: "m",
-      age: 14,
-      location: "Winterfell"
-    },
-    {
-      id: 2,
-      first_name: "Eddard",
-      last_name: "Stark",
-      alive: false,
-      house: "Stark",
-      gender: "m",
-      age: 35,
-      location: 'Winterfell'
-    },
-    {
-      id: 3,
-      first_name: "Catelyn",
-      last_name: "Stark",
-      alive: false,
-      house: "Stark",
-      gender: "f",
-      age: 33,
-      location: "Winterfell"
-    },
-    {
-      id: 4,
-      first_name: "Roose",
-      last_name: "Bolton",
-      alive: false,
-      house: "Bolton",
-      gender: "m",
-      age: 40,
-      location: "Dreadfort"
-    },
-    {
-      id: 5,
-      first_name: "Ramsay",
-      last_name: "Snow",
-      alive: false,
-      house: "Bolton",
-      gender: "m",
-      age: 15,
-      location: "Dreadfort"
-    },
-  ]
+    "access_token": String,
+    "refresh_token": String,
+    "scope": String,
+    "token_type": "Bearer",
+    "expires_in": Int // seconds to expiration
 }
-                </code></pre>
-            <h4>QUERY PARAMETERS</h4>
+                </code>
+            </pre>
+                <h4>Form URL Encoded</h4>
+                <table class="central-overflow-x">
+                    <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>grant_type</td>
+                        <td>String</td>
+                        <td>authorization_code</td>
+                    </tr>
+                    <tr>
+                        <td>code</td>
+                        <td>String</td>
+                        <td>User PAT</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <h3>
+                    2. Access Token Expiry
+                </h3>
+                <pre>
+                <code class="bash">
+HTTP/1.1 401 Unauthorized
+Content-Type: text
+
+Jwt is expired
+
+                </code>
+            </pre>
+                <p>
+                    Clients are allowed to utilize the access token until it reaches its expiration point.
+                    Should a client attempt to use an access token that has already expired,
+                    the following response will be
+                    generated
+                </p>
+                <br>
+                <pre><code class="json">
+                </code>
+            </pre>
+            </div>
+
+            <div>
+                <h3>
+                    3. Generate a new Access Token and Refresh token using the Refresh token
+                </h3>
+                <pre>
+                <code class="bash">
+# Here is a curl example
+curl --location 'https://api.tapsi.cab/api/v1/delivery/external/oauth2/token' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Authorization: Bearer Client Secret' \
+--data-urlencode 'grant_type=refresh_token' \
+--data-urlencode 'refresh_token=User Refresh Token'
+
+                </code>
+            </pre>
+                <p>
+                    Once a client has obtained an initial Access Token and Refresh Token, they can use the Refresh Token
+                    to generate a new Access Token and Refresh Token without needing to involve the user's PAT or Client
+                    ID again. This is useful for maintaining continuous access to the API without frequent user
+                    interactions.
+                    To generate a new set of tokens using a Refresh Token, clients should make a POST request to the
+                    token endpoint, and the body of the message should be sent as
+                    <strong>x-www-form-urlencoded</strong> and the client
+                    secret as the <strong>Bearer</strong> authorization header.
+                </p>
+
+                <p>
+                    At present, the access token is configured to remain valid for a duration of 2 days. When it
+                    expires, users need to log in using their Personal Access Token (PAT) again, following the same
+                    process as in Step 1.
+                </p>
+                <br>
+                <pre><code class="json">
+# Success Response:
+
+{
+    "access_token": String,
+    "refresh_token": String,k
+    "scope": String,
+    "token_type": "Bearer",
+    "expires_in": Int // seconds to expiration
+}
+
+
+# Error Response:
+
+HTTP/1.1 401 Unauthorized
+Content-Type: text
+
+Jwt is expired
+                </code>
+            </pre>
+                <h4>Form URL Encoded</h4>
+                <table class="central-overflow-x">
+                    <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>grant_type</td>
+                        <td>String</td>
+                        <td>refresh_token</td>
+                    </tr>
+                    <tr>
+                        <td>refresh_token</td>
+                        <td>String</td>
+                        <td>User Refresh Token</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="overflow-hidden content-section" id="content-errors">
+            <h1>Error Models</h1>
+            <pre>
+                <code class="json">
+{
+code: Int, //A simple error code that can be easily handled by the client.
+message: String,
+details: Error[]
+}
+                </code>
+            </pre>
+            <p>
+                This document provides an overview of the Tapsi-Pack error model for Istio APIs,
+                which uses
+                <a href="https://cloud.google.com/apis/design/errors">Google Error Model APIs</a>
+                as the underlying infrastructure.
+                Every error that occurs within handling a request in Tapsi-Pack that is called has the following format:
+            </p>
+
+            <h3>
+                Error Message
+            </h3>
+
+            <p>
+                The error message should assist users in comprehending and resolving the API error quickly and easily.
+                The message field is intended for developers and is written in English.
+            </p>
+
+            <h3>
+                Error Details
+            </h3>
+
+            <p>
+                There are some standard error payloads for error details. These cover the most common needs for API
+                errors. Like error codes, developers should use these standard payloads whenever possible. For now, in
+                Tapsi-Pack we have one known payload:
+            </p>
+
             <table class="central-overflow-x">
                 <thead>
                 <tr>
@@ -165,96 +345,365 @@ Result example :
                 </thead>
                 <tbody>
                 <tr>
-                    <td>secret_key</td>
-                    <td>String</td>
-                    <td>Your API key.</td>
-                </tr>
-                <tr>
-                    <td>search</td>
-                    <td>String</td>
-                    <td>(optional) A search word to find character by name.</td>
-                </tr>
-                <tr>
-                    <td>house</td>
+                    <td>ErrorLocalization</td>
                     <td>String</td>
                     <td>
-                        (optional) a string array of houses:
+                        If a user-facing error message is needed. we use this error payload, in which the message in
+                        this payload is localized.
                     </td>
-                </tr>
-                <tr>
-                    <td>alive</td>
-                    <td>Boolean</td>
-                    <td>
-                        (optional) a boolean to filter alived characters
-                    </td>
-                </tr>
-                <tr>
-                    <td>gender</td>
-                    <td>String</td>
-                    <td>
-                        (optional) a string to filter character by gender:<br>
-                        m: male<br>
-                        f: female
-                    </td>
-                </tr>
-                <tr>
-                    <td>offset</td>
-                    <td>Integer</td>
-                    <td>(optional - default: 0) A cursor for use in pagination. Pagination starts offset the specified offset.</td>
-                </tr>
-                <tr>
-                    <td>limit</td>
-                    <td>Integer</td>
-                    <td>(optional - default: 10) A limit on the number of objects to be returned, between 1 and 100.</td>
                 </tr>
                 </tbody>
             </table>
-        </div>
-        <div class="overflow-hidden content-section" id="content-errors">
-            <h2>Errors</h2>
+
+            <h4>
+                Error Localization
+            </h4>
+            <pre>
+                <code class="json">
+# Error Localized Message:
+
+{
+  "@type": "type.googleapis.com/google.rpc.LocalizedMessage",
+  "locale": "fa-IR",
+  "message": "مختصات داده شده اشتباه است یا تپسی پک در این مختصات سرویس ارائه نمی‌دهد."
+}
+                </code>
+            </pre>
             <p>
-                The Westeros API uses the following error codes:
+                If a user-facing error message is needed, use LocalizedMessage which will be appeared in the details
+                field.
             </p>
-            <table>
-                <thead>
-                <tr>
-                    <th>Error Code</th>
-                    <th>Meaning</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>X000</td>
-                    <td>
-                        Some parameters are missing. This error appears when you don't pass every mandatory parameters.
-                    </td>
-                </tr>
-                <tr>
-                    <td>X001</td>
-                    <td>
-                        Unknown or unvalid <code class="higlighted">secret_key</code>. This error appears if you use an unknow API key or if your API key expired.
-                    </td>
-                </tr>
-                <tr>
-                    <td>X002</td>
-                    <td>
-                        Unvalid <code class="higlighted">secret_key</code> for this domain. This error appears if you use an  API key non specified for your domain. Developper or Universal API keys doesn't have domain checker.
-                    </td>
-                </tr>
-                <tr>
-                    <td>X003</td>
-                    <td>
-                        Unknown or unvalid user <code class="higlighted">token</code>. This error appears if you use an unknow user <code class="higlighted">token</code> or if the user <code class="higlighted">token</code> expired.
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+
+
+            <h4>
+                Constraints of Error Details
+            </h4>
+            <p>
+                The Tapsi-Pack backend team guarantees that the error details will always be one of the standard error
+                payloads. However, the backend team does not guarantee that the error details will always be present.
+                For example, if the error is caused by a network failure, the error details may not be available. In
+                this case, the client should not rely on the error details to be present. Instead, the client should
+                rely on the error code and message to be present. The client should also be prepared to handle the case
+                where the error details are not present.
+            </p>
+            <p>
+                Also, The Tapsi-Pack backend team guarantees that the list of error details always contains one or zero
+                of each unique type and there are rules for handling them:
+                If there are any ErrorLocalization, the message in this object should be shown to the end user.
+
+            </p>
         </div>
+
+
+        <div class="overflow-hidden content-section" id="content-client-apis">
+            <h1>Client APIs</h1>
+            <p>
+                These APIs can be used by clients. The access token should be set in the header of all APIs with the key
+                name "authorization".
+            </p>
+
+            <div>
+                <h3>
+                    Available Dates API
+                </h3>
+                <pre>
+                    <code class="json">
+# Response:
+
+{
+ "availableDatesTimestamp": [
+  "1690576200000",
+  "1690662600000",
+  "1690749000000"
+ ]
+}
+                </code>
+            </pre>
+                <p>
+                    This API returns a list of timestamps that correspond to the first days in which Tapsi Pack can
+                    offer services in the Tehran timezone. These timestamps are used in the preview API to calculate
+                    time-slots for a specific day.
+                    This API can be called with both client secret and user access token.
+                </p>
+                <p>
+                    URL :<br>
+                    <code class="higlighted break-word">/api/v1/delivery/external/embedded/available-dates</code>
+                </p>
+                <p>
+                    METHOD :<br>
+                    <code class="higlighted break-word">GET</code>
+                </p>
+            </div>
+
+
+            <div>
+                <h3>
+                    Order Preview API
+                </h3>
+                <pre>
+                <code class="json">
+
+# Response:
+
+{
+  "token": "string",
+  "invoicePerTimeslots": [
+    {
+      "timeslotId": "string",
+      "startTimestamp": "Long", // start timestamp of the timeslot
+      "endTimestamp": "Long", // end timestamp of the timeslot
+      "isAvailable": "bool", // indicate if the timeslot is available or not
+      "invoice": "Invoice?" // It's null when the timeslot is not available
+    }
+  ]
+}
+
+Invoice: {
+  "discount": "int", // the amount of discount
+  "amount": "int", // the total amount of the order
+  "paymentInAdvance": "int", // the payment in advance amount (amount - discount - senderCredit)
+  "descriptions": [ // the detail of the invoice provided as a list of title and description
+    {
+      "title": "string", // description title according to the user language
+      "amount": "int"
+    }
+  ]
+}
+                </code>
+            </pre>
+                <p>
+                    Clients are allowed to utilize the access token until it reaches its expiration point.
+                    Should a client attempt to use an access token that has already expired,
+                    the following response will be
+                    generated
+                </p>
+                <p>
+                    Also, if this API is called using the client secret instead of the user access token, you can
+                    display a preview of prices to your users without the need for a user token. The only difference is
+                    that the Token field in the response of this API will be an empty string.
+                </p>
+
+                <p>
+                    URL :<br>
+                    <code class="higlighted break-word">/api/v1/delivery/external/embedded/order/preview</code>
+                </p>
+                <p>
+                    METHOD :<br>
+                    <code class="higlighted break-word">GET</code>
+                </p>
+
+                <h4>Query Params</h4>
+                <table class="central-overflow-x">
+                    <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>originLat</td>
+                        <td>float</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>originLong</td>
+                        <td>float</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>destinationLat</td>
+                        <td>float</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>destinationLong</td>
+                        <td>float</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>dateTimestamp</td>
+                        <td>float</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>couponCode</td>
+                        <td>string?</td>
+                        <td>(optional)</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+
+            <div>
+                <h3>
+                    Order Submission API
+                </h3>
+                <pre>
+                <code class="json">
+
+# Location:
+
+{
+  "coordinate": {
+    "longitude": float,
+    "latitude": float
+  },
+  "description": "string",
+  "buildingNumber": "string",
+  "apartmentNumber": "string"
+}
+
+# Phone:
+
+{
+  "number": "string",
+  "type": "string" // HOME, MOBILE, OTHER
+}
+
+# Receiver:
+
+{
+  "fullName": "string",
+  "phones": [Phone],
+  "location": Location
+}
+
+# Sender:
+
+{
+  "location": Location
+}
+
+# Pack:
+
+{
+  "description": "string"
+}
+
+# Response:
+
+{
+  "orderId": "string" // the submitted order identifier
+}
+                </code>
+            </pre>
+                <p>
+                    Clients are allowed to utilize the access token until it reaches its expiration point.
+                    Should a client attempt to use an access token that has already expired,
+                    the following response will be
+                    generated
+                </p>
+                <p>
+                    Also, if this API is called using the client secret instead of the user access token, you can
+                    display a preview of prices to your users without the need for a user token. The only difference is
+                    that the Token field in the response of this API will be an empty string.
+                </p>
+
+                <p>
+                    URL :<br>
+                    <code class="higlighted break-word">/api/v1/delivery/external/embedded/order/submit</code>
+                </p>
+                <p>
+                    METHOD :<br>
+                    <code class="higlighted break-word">POST</code>
+                </p>
+
+                <h4>Request Body</h4>
+                <table class="central-overflow-x">
+                    <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>sender</td>
+                        <td>Sender</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>receiver</td>
+                        <td>Receiver</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>pack</td>
+                        <td>Pack</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>timeslotId</td>
+                        <td>string</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>token</td>
+                        <td>string</td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
     </div>
-    <div class="content-code"></div>
+</div>
+<div class="content-code"></div>
 </div>
 <!-- Github Corner Ribbon - to remove (Ribbon created with : http://tholman.com/github-corners/ )-->
-<a href="https://github.com/ticlekiwi/API-Documentation-HTML-Template" class="github-corner" aria-label="View source on Github" title="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="z-index:99999; fill:#70B7FD; color:#fff; position: fixed; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}@media only screen and (max-width:680px){ .github-corner > svg { right: auto!important; left: 0!important; transform: rotate(270deg)!important;}}</style>
+<a href="https://github.com/ticlekiwi/API-Documentation-HTML-Template" class="github-corner"
+   aria-label="View source on Github" title="View source on Github">
+    <svg width="80" height="80" viewBox="0 0 250 250"
+         style="z-index:99999; fill:#70B7FD; color:#fff; position: fixed; top: 0; border: 0; right: 0;"
+         aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+<style>.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
+}
+
+@keyframes octocat-wave {
+    0%, 100% {
+        transform: rotate(0)
+    }
+    20%, 60% {
+        transform: rotate(-25deg)
+    }
+    40%, 80% {
+        transform: rotate(10deg)
+    }
+}
+
+@media (max-width: 500px) {
+    .github-corner:hover .octo-arm {
+        animation: none
+    }
+
+    .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out
+    }
+}
+
+@media only screen and (max-width: 680px) {
+    .github-corner > svg {
+        right: auto !important;
+        left: 0 !important;
+        transform: rotate(270deg) !important;
+    }
+}</style>
 <!-- END Github Corner Ribbon - to remove -->
 <script src="js/script.js"></script>
 </body>
