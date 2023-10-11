@@ -77,6 +77,9 @@
             <li class="scroll-to-link" data-target="content-get-order">
                 <a> - Get Order API</a>
             </li>
+            <li class="scroll-to-link" data-target="content-order-cancellation">
+                <a> - Order Cancellation API</a>
+            </li>
         </ul>
     </div>
 </div>
@@ -823,6 +826,56 @@ Invoice: {
                 </table>
 
             </div>
+
+            <div id="content-order-cancellation">
+                <h3>
+                    Order Cancellation API
+                </h3>
+                <pre>
+                <code class="json">
+# Response:
+
+{}
+                </code>
+            </pre>
+                <p>
+                    This method allows clients to cancel one or multiple orders.
+                </p>
+
+                <p>
+                    URL :<br>
+                    <code class="higlighted break-word">/api/v1/delivery/external/embedded/order/change-status/cancelledBySender</code>
+                </p>
+                <p>
+                    METHOD :<br>
+                    <code class="higlighted break-word">PUT</code>
+                </p>
+
+                <h4>Request Body</h4>
+                <table class="central-overflow-x">
+                    <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>request_items</td>
+                        <td>RequestItem[]</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>status</td>
+                        <td>TransformationStatus</td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
         </div>
 
     </div>
