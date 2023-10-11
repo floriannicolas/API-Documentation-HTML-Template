@@ -343,16 +343,19 @@ details: Error[]
                 as the underlying infrastructure.
                 Every error that occurs within handling a request in Tapsi-Pack that is called has the following format:
             </p>
-
+        </div>
+        <!-- 2.1: Error Message -->
+        <div class="overflow-hidden content-section">
             <h3>
                 Error Message
             </h3>
-
             <p>
                 The error message should assist users in comprehending and resolving the API error quickly and easily.
                 The message field is intended for developers and is written in English.
             </p>
-
+        </div>
+        <!-- 2.2: Error Details -->
+        <div class="overflow-hidden content-section">
             <h3>
                 Error Details
             </h3>
@@ -382,7 +385,9 @@ details: Error[]
                 </tr>
                 </tbody>
             </table>
-
+        </div>
+        <!-- 2.2.1: Error Localization -->
+        <div class="overflow-hidden content-section">
             <h4>
                 Error Localization
             </h4>
@@ -401,8 +406,9 @@ details: Error[]
                 If a user-facing error message is needed, use LocalizedMessage which will be appeared in the details
                 field.
             </p>
-
-
+        </div>
+        <!-- 2.2.2: Constraints of Error Details -->
+        <div class="overflow-hidden content-section">
             <h4>
                 Constraints of Error Details
             </h4>
@@ -430,7 +436,7 @@ details: Error[]
                 name "authorization".
             </p>
         </div>
-
+        <!-- 3.1: Available Dates API -->
         <div class="overflow-hidden content-section" id="content-available-dates">
             <h3>
                 Available Dates API
@@ -463,7 +469,7 @@ details: Error[]
                 <code class="higlighted break-word">GET</code>
             </p>
         </div>
-
+        <!-- 3.2: Order Preview API -->
         <div class="overflow-hidden content-section" id="content-order-preview">
             <h3>
                 Order Preview API
@@ -564,7 +570,7 @@ Invoice: {
             </table>
 
         </div>
-
+        <!-- 3.3: Order Submission API -->
         <div class="overflow-hidden content-section" id="content-order-submission">
             <h3>
                 Order Submission API
@@ -678,7 +684,7 @@ Invoice: {
             </table>
 
         </div>
-
+        <!-- 3.4: Get Order API -->
         <div class="overflow-hidden content-section" id="content-get-order">
             <h3>
                 Get Order API
@@ -836,7 +842,7 @@ Invoice: {
             </table>
 
         </div>
-
+        <!-- 3.5: Order Cancellation API -->
         <div class="overflow-hidden content-section" id="content-order-cancellation">
             <h3>
                 Order Cancellation API
