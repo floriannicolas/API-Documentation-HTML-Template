@@ -78,7 +78,6 @@ p, .content ul, .content ol{
     font-size: 1.333em;
     color: #034c8f;
     padding-top: 2.5em;
-    text-transform: uppercase;
     border-top: 1px solid rgba(255,255,255,0.3);
     border-top-width: 0;
     margin-top: 0;
@@ -261,7 +260,6 @@ pre{
     margin-top: 2.5em;
     margin-bottom: 0.8em;
     color: #034c8f;
-    text-transform: uppercase;
 }
 .content h2{
     font-size: 1.333em;
